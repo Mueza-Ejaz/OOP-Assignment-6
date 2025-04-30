@@ -30,111 +30,130 @@ print(p1.welcome()) # Hello Person!
 
 
 # Inheritance:
-# yani kisi ki qualities ko get karna jaisy kuch qualities ya talent hamey apny parents sy milla hai.
+# e.g: yani kisi ki qualities ko get karna jaisy kuch qualities ya talent hamey apny parents sy milla hai.
+# Python me ek class dusri class ke properties aur methods le leti hai, usko inheritance kehte hain.
 # "When one class(child/derived) derives the properties and methods of another class(parent/base), it is called inheritance."
 
-# class Parent: # ye wo class hy parent jo apni qualities ko share karta hy
-# class Child(Parent): # ye wo class hy jo parent ki qualities ko inherit karta hy
-
 # Types of Inheritance:
-# 1- Single Inheritance:   
+
+# 1- Single Inheritance: 
+# Ek parent aur ek child class hoti hai.
+# Child class, parent ki cheezen use kar sakti hai.  
 # Example:
 
+class Parent:
+    def talent(self):
+        print("I can paint")
+
+class Child(Parent):  # Inheriting from Parent
+    def name(self):
+        print("My name is Mueza")
+
+c = Child()
+c.name()       # My name is Mueza
+c.talent()     # I can paint  → inherited from Parent
+
+
+# 2- Multiple Inheritance: 
+# Ek child, do ya zyada parents se inherit karta hai..
+
+# Example:
+
+class Mother:
+    def cook(self):
+        print("I can cook")
+
+class Father:
+    def drive(self):
+        print("I can drive")
+
+class Child(Mother, Father):  # Inheriting from both
+    def play(self):
+        print("I love to play")
+
+c = Child()
+c.cook()   # From Mother
+c.drive()  # From Father
+c.play()   # From Child
+
+
+
+# 3- Multi-level Inheritance:
+# Parent → Child → Grandchild
+# Ek ke baad ek class inherit hoti hai.
+
+# Example:
+
+class GrandParent:
+    def house(self):
+        print("I have a big house")
+
+class Parent(GrandParent):
+    def car(self):
+        print("I have a car")
+
+class Child(Parent):
+    def bike(self):
+        print("I have a bike")
+
+c = Child()
+
+c.house()  # From GrandParent
+c.car()    # From Parent
+c.bike()   # From Child
+
+
+# Super() Method:
+# super() ka kaam hota hai:Parent class ka method ya constructor ko call karna child class sy.
+# -super() ka matlab hota hai: "parent class ko bulao".
+
+
+# Example without super():
+# Agar super() na lagao, to tumhe parent class ka code dobara likhna padega, ya kuch cheezein call hi nahi hongi.
+
+#  Example WITHOUT super():
 class Car:
-    color = "grey"
-    @staticmethod
-    def start():
-        print("Car Started...")
-
-    @staticmethod
-    def stop():
-        print("Car Stopped...")
-
-class Toyota(Car): # Inheriting Car class
-    def __init__(self, name):
-        self.name = name
-
-car1 = Toyota("Corolla")
-car2 = Toyota("Yaris")
-
-print(car1.name) # Corolla
-print(car2.name) # Yaris
-print(car1.color) # grey
-
-# 2- Multiple Inheritance: # Base(Parent) => Derived(Child)-parent => Derived(Child)
-# ye sab ki properties ko apy andar inherit kary ga last wali class
-# Example
-
-class Car:
-    @staticmethod
-    def start():
-        print("Car Started...")
-
-    @staticmethod
-    def stop():
-        print("Car Stopped...")
-
-class Toyota(Car): # Inheriting Car class
-    def __init__(self, brand):
-        self.brand = brand
-
-class Corolla(Toyota): # Inheriting Toyota class
     def __init__(self, type):
-        self.type = type 
-
-car1 = Corolla("diesel")
-car1.start() # Car Started...
-
-
-# 3- Multilevel Inheritance:
-# is me phely parent classes banaii gy or phir aik saat child class me use kary gy inherit kary gy.
-
-# Example
-class A:
-    varA = "Welcome to class A"
-
-class B:
-    varB = "Welcome to class B"
-
-class C(A, B): # Inheriting A and B class
-    varC = "Welcome to class C"
-
-var1 = C.varA 
-print(var1)   # Welcome to class A
-
-# Super Method:
-# "Super() method is used to access methods of the parent class."
-# isy hum parent class k methods ko access kary gy child class me.
-
-# Example
-class Car:
-    def __init__(self, type): # is type ko acces karny k liye super() use kary gy
         self.type = type
 
-    @staticmethod
-    def start():
-        print("Car Started...")
-
-    @staticmethod
-    def stop():
-        print("Car Stopped...")
-
-class Toyota(Car): # Inheriting Car class
+class Toyota(Car):
     def __init__(self, name, type):
-        self.name  = name
-        super().__init__(type)
-        super().start()
+        self.name = name
+        self.type = type  # Repeating parent class logic
+
+car1 = Toyota("Corolla", "Petrol")
+print(car1.type)
+
+# Note:
+# Yahan hum parent class ka logic dobara likh rahe hain (self.type = type).
+# Agar parent class ka logic zyada complex ho, to ye galat practice hai.
+
+# Now WITH super():
+class Car:
+    def __init__(self, type):
+        self.type = type
+
+class Toyota(Car):
+    def __init__(self, name, type):
+        self.name = name
+        super().__init__(type)  # Reuse parent class logic
+
+car1 = Toyota("Corolla", "Petrol")
+print(car1.type)
 
 
-car1 = Toyota("prius", "electric")
-print(car1.type) # electric
+# Benefits:
+# - Code reusable hai.
+# - Parent ka kaam dobara likhne ki zarurat nahi.
+# - Agar kal ko Car class me self.type = type.upper() likha gaya ho, to child ko automatically updated version mil jayega.
+
+
+
+
+
 
 
 # class Method:
-
-
-
-
 # class Student:
 #     @classmethod  # decorator
 #     def college(cls):
