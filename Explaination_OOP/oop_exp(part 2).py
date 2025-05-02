@@ -109,7 +109,7 @@ c.bike()   # From Child
 
 
 # Example without super():
-# Agar super() na lagao, to tumhe parent class ka code dobara likhna padega, ya kuch cheezein call hi nahi hongi.
+# Agar super() na lagao, to hamey parent class ka code dobara likhna padega, ya kuch cheezein call hi nahi hongi.
 
 #  Example WITHOUT super():
 class Car:

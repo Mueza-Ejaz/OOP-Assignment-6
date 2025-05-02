@@ -152,7 +152,7 @@ print(s1.get_marks)
 # Sirf normal function ki tarah hota hai, jo class ke andar hota hai.
 
 #  Kab use karte hain?
-# Jab tumhe aisa function banana ho jo kisi object ki property ko use na kare, sirf kuch kaam kare (e.g., print, calculate).
+# Jab hamey aisa function banana ho jo kisi object ki property ko use na kare, sirf kuch kaam kare (e.g., print, calculate).
 
 # syntax
 class Student:
