@@ -134,9 +134,10 @@ class Car:
         self.type = type
 
 class Toyota(Car):
-    def __init__(self, name, type):
+    def __init__(self, name, type): # # ✔ Receive type from parent class
         self.name = name
         super().__init__(type)  # Reuse parent class logic
+
 
 car1 = Toyota("Corolla", "Petrol")
 print(car1.type)
@@ -148,16 +149,66 @@ print(car1.type)
 # - Agar kal ko Car class me self.type = type.upper() likha gaya ho, to child ko automatically updated version mil jayega.
 
 
+                              # ****CLASS METHOD*****:
 
+# poori class se related hota hai
+# cls (class) ko argument leta hai
+# Ye method class ki properties ko access/change kar sakta hai.
 
+# Kab use karte hain?
 
+# -Jab tumhe class-level ka kaam karna ho — jaise:
+# -multiple objects banane ka special way
+# -class variables ko update karna
 
-
-# class Method:
 # class Student:
 #     @classmethod  # decorator
 #     def college(cls):
 #         pass
+
+# ab class method me class attributes ko change karny k bohat sy methods hoty hy.
+class Person:
+    name = "Mueza"
+
+    # def changeName(self,name):
+    #     Person.name = name # method 1
+    #     self.__class__. name =  "Anoo Naatkhuwan" # method 2
+
+     # method 3
+    @classmethod
+    def changeName(cls, name): # ye class method class k attributes name waly variable me directly changes karta hy
+        cls.name = name
+
+p1 = Person()
+p1.changeName("Anoo Naatkhuwan")
+print(p1.name)      #Anoo Naatkhuwan 
+print(Person.name)  # Anoo Naatkhuwan
+
+
+# Example 2:
+class Pizza:
+    def __init__(self, size):
+        self.size = size
+
+    @classmethod
+
+    def large_pizza(cls):
+        return cls("Large")
+
+    @classmethod
+    def medium_pizza(cls):
+        return cls("Medium") # method 2
+    
+
+# Ab object banate hain
+pizza1 = Pizza.large_pizza()
+pizza2 = Pizza.medium_pizza()
+
+print(pizza1.size)   # Output: Large
+print(pizza2.size)   # Output: Medium
+
+
+
 
 
 

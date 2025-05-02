@@ -146,20 +146,42 @@ print(s1.get_marks)
 
 
 # STATIC METHODS:
-# Methods that don't use the self parameter (work at class level).
+# Static method class ke andar hota hai, lekin:
+# -na object (instance) se related hota hai
+# -na self ya cls leta hai
+# Sirf normal function ki tarah hota hai, jo class ke andar hota hai.
+
+# 📦 Kab use karte hain?
+# Jab tumhe aisa function banana ho jo kisi object ki property ko use na kare, sirf kuch kaam kare (e.g., print, calculate).
 
 # syntax
 class Student:
     @staticmethod # decorator (isy use kar k self parameter ki zaroorat nahi hogi )
-    def college(self):
+    def college():
         print("hello")
+
+# Example:
+class MathOperations:
+    @staticmethod
+    def add(a, b):
+        return a + b
+
+# Use without creating object
+print(MathOperations.add(5, 3))  # Output: 8
+
+# "Static method kyun use karte hain? Agar self wala function banayein to kya hoga?"
+
+# Answer:
+# Agar hamara function kisi bhi object ki properties (like self.name) use nahi karta, to @staticmethod ka use karna best practice hai.
+# Agar hum self use karty hy, to Python samajhta hai: "Is function ko object ki koi property chahiye hogi."
          
 
-# Four pilars of OOP:
+#TYPES OF OOP:
 # 1- Abstraction
 # 2- Encapsulation
 # 3- Inheritance
 # 4- Polymorphism
+
 
 # 1- Abstraction:
 #"Hiding the implementation details of a class and only showing the essential features to the user."
