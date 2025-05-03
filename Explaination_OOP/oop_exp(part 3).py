@@ -1,7 +1,7 @@
 # More explore Getter and setter decoraator.
 # Real life Example:
 # Socho hamary paas ek glass hai.
-# me dekhti ho usme kitna paani hai → ye getter hai (value lena)
+# hum dekhty hy usme kitna paani hai → ye getter hai (value lena)
 # Glass mein paani daalti ho → ye setter hai (value dena)
 
 # Technical words:
@@ -55,6 +55,7 @@ print(s.name)        # getter chala
 # property decorator: (Method ko attribute ki tarah banata hai)
 # Python mein @property ek decorator hai jo ek method ko attribute ki tarah use karne ki sahulat deta hai. Iska matlab yeh hai ke aap kisi method ko call () ke bagair access kar sakti ho, jaise ek normal variable.
 
+
 # without use @property:
 class Student:
     def __init__(self, name):
@@ -65,6 +66,7 @@ class Student:
 
 student = Student("Mueza")
 print(student.get_name())  # method call
+
 
 # with use @property:
 class Student:
@@ -77,6 +79,7 @@ class Student:
 
 student = Student("Mueza")
 print(student.name)  # no parentheses!
+
 
 # Is tarah se aap method ko attribute ki tarah use kar sakte hain, jo code ko zyada readable aur samajhne mein asaan banata hai. Yeh encapsulation ka bhi ek hissa hai, jahan aap data ko access karne ke liye methods ka istemal karte hain, lekin unhe attribute ki tarah dikhate hain.
 # Iska fayda yeh hai ke agar aapko kabhi method ki implementation change karni ho, toh aapko sirf method ke andar changes karne hain, aur baaki code ko nahi touch karna padega. Yeh encapsulation aur abstraction ka ek acha example hai.
