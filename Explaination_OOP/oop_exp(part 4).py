@@ -93,9 +93,106 @@ class Shape(ABC):
 # Ye ek decorator hai (@abstractmethod) jo hum method ke upar likhte hain batane ke liye ke ye method sirf design hai, iska code abhi nahi likha gaya — aur har child class ko is method ka code likhna lazmi hai.
 
 
+#-------------------------------------------------------------------------------------------------------#
+
+#  COMPOSITION:
+
+# Composition ka matlab hai jab ek class ke andar doosri class ka object banaya jata hai aur woh sirf usi ke sath kaam karta hai.
+# Agar baahar wali cheez (jaise Car) khatam ho jaye to andar wali cheez (jaise Engine) bhi khatam ho jati hai.
+# Yani andar wali cheez apne aap kaam nahi kar sakti, woh sirf baahar wali cheez ke sath hi kaam karti hai.
 
 
+class Engine:
+    def start(self):
+        print("Engine started!") 
 
+class Car:
+    def __init__(self, engine):
+        self.engine = engine  # Composition(using object of Engine class)
+
+    def start_engine(self):
+        self.engine.start()  # Accessing Engine's method        
+    
+# Example usage
+engine = Engine() 
+car = Car(engine)  
+car.start_engine()  # Output: Engine started!
+
+#-------------------------------------------------------------------------------------------------------#
+# AGGREGATION:
+
+# Isme ek class doosri class ka object apne andar rakhti hai, lekin dono ka apna alag wajood (existence) hota hai.
+# Yani agar parent class ka object delete ho jaye, to child class ka object phir bhi zinda rehta hai.
+
+# Aggregation ki pehchaan:
+
+# Ek object dusre ke andar reference ke tor par hota hai (not created inside).
+# Inner object independent hota hai.
+# Agar outer class delete ho jaye, inner object phir bhi use ho sakta hai.
+
+class Employee:
+    def __init__(self, name):
+        self.name = name
+
+    def show_employee(self):
+        return f"Employee Name: {self.name}"    
+
+class Department:
+    def __init__(self,department_name, employee):
+        self.department_name = department_name
+        self.employee = employee
+
+    def show_department(self):
+        return f"Department Name: {self.department_name}, {self.employee.show_employee()}"
+
+
+emp_1 = Employee("Mueza Ejaz") 
+department_1 = Department("HR", emp_1)
+
+print(department_1.show_department())  # Output: Department Name: HR, Employee Name: Mueza Ejaz
+        
+#-------------------------------------------------------------------------------------------------------#
+# MRO (Method Resolution Order):
+
+# MRO yeh batata hai ki jab aap multiple inheritance use karte ho, to Python kis order me parent classes ko check karega 
+# jab koi method ya attribute call kiya jaye.
+
+# MRO ka use kyun hota hai?
+
+# Jab ek class multiple classes se inherit karti hai, aur un sab me same naam ka method ho, to Python ko yeh decide karna hota hai ki pehle kahan se method uthaye.
+# MRO ka rule Python me define hai taake ambiguity na ho.
+
+class A:
+    def show(self):
+        print("A")
+
+class B(A):
+    def show(self):
+        print("B")
+
+class C(A):
+    def show(self):
+        print("C")
+
+class D(B, C):
+    pass
+
+d = D()
+d.show()
+print(D.__mro__)
+
+# Output:
+# B
+# (<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>)
+
+# Yeh output yeh batata hai:
+
+# -Python ne d.show() call kiya:
+# -Pehle D me dekha
+# -Phir B me (mil gaya, print "B")
+# -C aur A me jaana hi nahi pada
+# Agar B me show() nahi hota, to C me dekhta, phir A me.
+        
 
 
 
