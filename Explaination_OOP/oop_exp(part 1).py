@@ -13,6 +13,8 @@
 # 🔹 1. Class kya hoti hai?
 # Class ek design / blueprint hoti hai.
 # Yeh batata hai ke ek object kaisa dikhega, kya kar sakta hai.
+# class -blueprint/template =>koi aisa pattern ya guidance define hona.
+ # blueprint mean kisi bhi cheez ki guidance
 
 # 🔸 Example:
 # Socho ke  me "Car" ka ek design bana rahi ho — usme likha hai:
@@ -59,7 +61,10 @@ print(c1.name)  # Landcrozer
 # syntax:(creating class)
 # class Student:
 #     def __init__(self, fullname):
+          # class attributes/class variables
 #         self.name = fullname
+
+# self apny class k variables ko refer karta hy.
 
 # creating  object:
 # s1 = Student("mueza")
